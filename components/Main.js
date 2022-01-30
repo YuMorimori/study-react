@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css';
+import classes from './Main.module.css';
 import { Links } from '../components/Links';
 import { Headline } from '../components/Headline';
 
@@ -6,9 +6,9 @@ export function Main(props) {
   /* ファイルシステムルーティングを機能させるためにpages配下の
     ディレクトリにはdefaultをつけておく決まりがある*/
   return (
-      <main className={styles.main}>
+      <main className={classes.main}>
         <Headline page={props.page} >
-          <code className={styles.code}>pages/{props.page}.js</code>
+          <code className={classes.code}>pages/{props.page}.js</code>
           {/* children */}
 
         </Headline>
