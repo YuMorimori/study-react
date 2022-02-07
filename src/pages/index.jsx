@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Head from 'next/head'
 import styles from 'src/styles/Home.module.css';
 import { Footer } from 'src/components/Footer';
