@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import Head from 'next/head'
-import styles from 'src/styles/Home.module.css';
-import { Footer } from 'src/components/Footer';
-import { Main } from 'src/components/Main';
-import { Header } from 'src/components/Header';
-import { useCallback } from 'react';
+// /* eslint-disable @next/next/no-html-link-for-pages */
+import React from "react";
+import Head from "next/head";
+import styles from "src/styles/Home.module.css";
+import { Footer } from "src/components/Footer";
+import { Main } from "src/components/Main";
+import { Header } from "src/components/Header";
+import { useCallback } from "react";
 
 
 
@@ -19,8 +20,10 @@ export default function Home() {
   const handleClick = useCallback((e) => {
     console.log(e.target.href);//targetを指定すると属性にアクセスできる
     e.preventDefault();
-    alert(foo)
+    alert(foo);
   }, []);
+
+  <img src="" alt="" />
 
   
   /* ファイルシステムルーティングを機能させるためにpages配下の
