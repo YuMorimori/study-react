@@ -1,5 +1,5 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
@@ -14,11 +14,17 @@ export default function Home() {
 
   // useCallbackを使うと再レンダリングされるときに再生成されなくなる
 
-  const handleClick = (e) => {
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-    // 前の状態を用いて更新したい時はsetの引数に関数を書く
-  };
+  const handleClick = useCallback(
+    () => {
+      if (count < 10) {
+        setCount((count) => count + 1);
+      }
+      // 前の状態を用いて更新したい時はsetの引数に関数を書く
+    },
+    [count]
+    // 第二引数を指定すると値が変更されるたびメソッド部分が再生成される
+    // 再生成を限定することでアプリのパフォーマンスをアップさせる目的
+  );
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
