@@ -1,45 +1,38 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
-import { useCallback } from "react";
 
 // メソッドをコンポーネント内部に書くと再レンダリングされるときに
 // 描画されてしまうのでパフォーマンスが落ちる
 
 export default function Home() {
+  const [count, setCount] = useState(1);
 
-  
-  const foo = 1;
-  
   // useCallbackを使うと再レンダリングされるときに再生成されなくなる
-  const handleClick = useCallback((e) => {
-    console.log(e.target.href);//targetを指定すると属性にアクセスできる
-    e.preventDefault();
-    alert(foo);
-  }, []);
-  
+
+  const handleClick = (e) => {
+    setCount((count) => count + 1);
+    setCount((count) => count + 1);
+    // 前の状態を用いて更新したい時はsetの引数に関数を書く
+  };
+
   useEffect(() => {
-    console.log("マウント時");
     document.body.style.backgroundColor = "lightblue";
 
     // アンマウント時の処理はreturnを使う
     return () => {
-      console.log("annマウント時");
       document.body.style.backgroundColor = "";
     };
   }, []);
-
 
   // <img src="" alt="" />
 
   /* ファイルシステムルーティングを機能させるためにpages配下の
     ディレクトリにはdefaultをつけておく決まりがある*/
-
-  
 
   return (
     <div className={styles.container}>
@@ -47,12 +40,13 @@ export default function Home() {
         <title>Index Page</title>
       </Head>
       <Header />
+      <h1>{count}</h1>
 
-      <a href="/about" onClick={handleClick}>
+      <button href="/about" onClick={handleClick}>
         {" "}
-      {/* //ここに直接処理を書くのはよろしくない */}
-      ボタン
-      </a>
+        {/* //ここに直接処理を書くのはよろしくない */}
+        ボタン
+      </button>
 
       <Main page="index" />
 
