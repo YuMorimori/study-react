@@ -13,6 +13,7 @@ export default function Home() {
   const [count, setCount] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState([]);
 
   // useCallbackを使うと再レンダリングされるときに再生成されなくなる
 
@@ -40,6 +41,17 @@ export default function Home() {
     }
     setText(e.target.value.trim());
   }, []);
+
+  const handleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      if (prevArray.some(item => item === text)){
+        alert("同じ要素がすでに存在します。");
+        return prevArray;
+      };//
+      // const newArray = [...prevArray, text]; //破壊的メソッドを避けるためにスプレッド構文を使う
+      return [...prevArray, text];
+    });
+  }, [text]);
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -70,6 +82,12 @@ export default function Home() {
       </button>
       <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
       <input type="text" value={text} onChange={handleChange} />
+      <button onClick={handleAdd}>追加</button>
+      <ul>
+        {array.map((item) => {
+          return <li key={item}>{item}</li>;
+        })}
+      </ul>
       <Main page="index" />
       <Footer />
     </div>
