@@ -1,68 +1,20 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
+import { useCounter } from "src/hooks/useCounter";
+import { useInputArray } from "src/hooks/useInputArray";
+import { useBgLightBlue } from "src/hooks/useBgLightBlue";
 
 // メソッドをコンポーネント内部に書くと再レンダリングされるときに
 // 描画されてしまうのでパフォーマンスが落ちる
 
 export default function Home() {
-  const [count, setCount] = useState(1);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([]);
-
-  // useCallbackを使うと再レンダリングされるときに再生成されなくなる
-
-  const handleClick = useCallback(
-    () => {
-      if (count < 10) {
-        setCount((prevCount) => prevCount + 1);
-      }
-      // 前の状態を用いて更新したい時はsetの引数に関数を書く
-    },
-    [count]
-    // 第二引数を指定すると値が変更されるたびメソッド部分が再生成される
-    // 再生成を限定することでアプリのパフォーマンスをアップさせる目的
-  );
-
-  const handleDisplay = useCallback(() => {
-    setIsShow((prevIsShow) => !prevIsShow);
-    // return isShow ? false : true;
-  }, []);
-
-  const handleChange = useCallback((e) => {
-    if (e.target.value.length > 5) {
-      alert("５文字以内にしてください");
-      return;
-    }
-    setText(e.target.value.trim());
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some(item => item === text)){
-        alert("同じ要素がすでに存在します。");
-        return prevArray;
-      };//
-      // const newArray = [...prevArray, text]; //破壊的メソッドを避けるためにスプレッド構文を使う
-      return [...prevArray, text];
-    });
-  }, [text]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "lightblue";
-
-    // アンマウント時の処理はreturnを使う
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
-
-  // <img src="" alt="" />
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgLightBlue();
 
   /* ファイルシステムルーティングを機能させるためにpages配下の
     ディレクトリにはdefaultをつけておく決まりがある*/
