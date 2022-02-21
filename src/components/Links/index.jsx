@@ -26,10 +26,10 @@ const ITEMS = [
 // 変わらないものを定義するときには大文字を使う
 
 // データと処理の部分を分けて書く
-export function Links({ items }) {
+export const Links = (props) => {
   return (
     <div className={classes.grid}>
-      {items.map((item) => {
+      {props.items.map((item) => {
         return (
           // eslint-disable-next-line react/jsx-key
           // key propsを追加してwarningを解決

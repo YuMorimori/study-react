@@ -2,7 +2,7 @@ import React from "react";
 import classes from "src/components/Footer/Footer.module.css";
 import Image from "next/image";
 
-export function Footer() {
+  export const Footer = () => {
   return (
 
       <footer className={classes.footer}>

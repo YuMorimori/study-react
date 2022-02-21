@@ -27,7 +27,7 @@ const ITEMS = [
   },
 ];
 
-export function Main(props) {
+export const Main = (props) => {
   /* ファイルシステムルーティングを機能させるためにpages配下の
     ディレクトリにはdefaultをつけておく決まりがある*/
 
