@@ -1,31 +1,15 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
 import styles from "src/styles/Home.module.css";
-import { Footer } from "src/components/Footer";
-import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { Posts } from "src/components/Posts";
 
 // メソッドをコンポーネント内部に書くと再レンダリングされるときに
 // 描画されてしまうのでパフォーマンスが落ちる
 
-const Home = (props) => {
+const Home = () => {
   /* ファイルシステムルーティングを機能させるためにpages配下の
     ディレクトリにはdefaultをつけておく決まりがある*/
-
-  const [posts, setPosts] = useState([]);
-
-  const getPosts = useCallback(async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const json = await res.json();
-    setPosts(json);
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
-
-  console.log(posts);
 
   return (
     <div className={styles.container}>
@@ -33,13 +17,7 @@ const Home = (props) => {
         <title>Index Page</title>
       </Head>
       <Header />
-      {posts.length > 0 ? (
-        <ol>
-          {posts.map((post) => {
-            return <li key={post.id}>{post.title}</li>;
-          })}
-        </ol>
-      ) : null}
+      <Posts />
     </div>
   );
 };
