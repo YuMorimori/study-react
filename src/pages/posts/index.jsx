@@ -1,6 +1,5 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
-import styles from "src/styles/Posts.module.css";
 import { Header } from "src/components/Header";
 import { Posts as PostsComponent } from "src/components/Posts";
 
@@ -12,7 +11,7 @@ const Posts = () => {
     ディレクトリにはdefaultをつけておく決まりがある*/
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Posts Page</title>
       </Head>
