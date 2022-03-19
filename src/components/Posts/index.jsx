@@ -20,11 +20,13 @@ export const Posts = () => {
   return (
     <ol>
       {data.map((post) => {
-        return <li key={post.id}>
-          <Link href={`post/${post.id}`}>
-            <a >{post.title}</a>
-          </Link>
-        </li>;
+        return (
+          <li key={post.id}>
+            <Link href={`posts/${post.id}`}>
+              <a>{post.title}</a>
+            </Link>
+          </li>
+        );
       })}
     </ol>
   );
