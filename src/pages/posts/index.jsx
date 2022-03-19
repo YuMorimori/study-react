@@ -1,25 +1,25 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
-import styles from "src/styles/Home.module.css";
+import styles from "src/styles/Posts.module.css";
 import { Header } from "src/components/Header";
-import { Posts } from "src/components/Posts";
+import { Posts as PostsComponent } from "src/components/Posts";
 
 // メソッドをコンポーネント内部に書くと再レンダリングされるときに
 // 描画されてしまうのでパフォーマンスが落ちる
 
-const Home = () => {
+const Posts = () => {
   /* ファイルシステムルーティングを機能させるためにpages配下の
     ディレクトリにはdefaultをつけておく決まりがある*/
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Index Page</title>
+        <title>Posts Page</title>
       </Head>
       <Header />
-      <Posts />
+      <PostsComponent />
     </div>
   );
 };
 
-export default Home;
+export default Posts;

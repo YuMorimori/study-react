@@ -6,7 +6,7 @@ import { Post } from "src/components/Post";
 // メソッドをコンポーネント内部に書くと再レンダリングされるときに
 // 描画されてしまうのでパフォーマンスが落ちる
 
-const PostId = () => {
+const PostsId = () => {
   return (
     <div className={styles.container}>
       
@@ -16,4 +16,4 @@ const PostId = () => {
   );
 };
 
-export default PostId;
+export default PostsId;
