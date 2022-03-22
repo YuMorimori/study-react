@@ -17,6 +17,7 @@ export const usePost = () => {
       : null,
     fetcher
   );
+
   return {
     post,
     user,
