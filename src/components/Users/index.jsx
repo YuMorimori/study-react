@@ -1,6 +1,6 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
 import Link from "next/link";
-import { useUsers } from "src/hooks/useUsers";
+import { useUsers } from "src/hooks/useFetchArray";
 
 // const fetcher = (...args) => fetch(...args).then(res => res.json())
 
