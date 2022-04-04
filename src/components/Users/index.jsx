@@ -5,9 +5,9 @@ import { useUsers } from "src/hooks/useFetchArray";
 // const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export const Users = () => {
-  const { data, error, isLoding, isEmpty } = useUsers();
+  const { data, error, isLoading, isEmpty } = useUsers();
 
-  if (isLoding) {
+  if (isLoading) {
     return <div>ローディング中です。</div>;
   }
   if (error) {

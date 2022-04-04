@@ -1,27 +1,19 @@
-import { useRouter } from "next/router";
-import { fetcher } from "src/utils/fetcher";
-import useSWR from "swr";
+const { useRouter } = require("next/router");
+const { fetcher } = require("src/utils/fetcher");
+const { default: useSWR } = require("swr");
 
 export const usePost = () => {
   const router = useRouter();
-  const { data: post, error: postError } = useSWR(
+  const { data, error } = useSWR(
     router.query.id
       ? `https://jsonplaceholder.typicode.com/posts/${router.query.id}`
       : null,
     fetcher
   );
 
-  const { data: user, error: useError } = useSWR(
-    post?.userId
-      ? `https://jsonplaceholder.typicode.com/users/${post.userId}`
-      : null,
-    fetcher
-  );
-
   return {
-    post,
-    user,
-    error: postError || useError,
-    isLoading: !user && !useError,
+    data,
+    error,
+    isLoading: !data && !error,
   };
 };
