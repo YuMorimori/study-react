@@ -1,13 +1,9 @@
-const { useRouter } = require("next/router");
 const { fetcher } = require("src/utils/fetcher");
 const { default: useSWR } = require("swr");
 
-export const usePost = () => {
-  const router = useRouter();
+export const usePost = (id) => {
   const { data, error } = useSWR(
-    router.query.id
-      ? `https://jsonplaceholder.typicode.com/posts/${router.query.id}`
-      : null,
+    id ? `https://jsonplaceholder.typicode.com/posts/${id}` : null,
     fetcher
   );
 

@@ -1,5 +1,6 @@
 // /* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { CommentsByPostId } from "src/components/Comments/CommentsByPostId";
 import { UserByUserId } from "src/components/User/UserByUserId";
 import { usePost } from "src/hooks/usePost";
@@ -7,7 +8,8 @@ import { usePost } from "src/hooks/usePost";
 // const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export const Post = () => {
-  const {data, error, isLoading} = usePost();
+  const router = useRouter();
+  const { data, error, isLoading } = usePost(router.query.id);
 
   if (isLoading) {
     return <div>ローディング中です。</div>;
