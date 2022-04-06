@@ -1,11 +1,8 @@
 import { fetcher } from "src/utils/fetcher";
 import useSWR from "swr";
 
- const useFetchArray = (url) => {
-  const { data, error } = useSWR(
-    url,
-    fetcher
-  );
+const useFetchArray = (url) => {
+  const { data, error } = useSWR(url, fetcher);
   return {
     data,
     error,
@@ -17,28 +14,19 @@ import useSWR from "swr";
 const API_URL = "https://jsonplaceholder.typicode.com";
 
 export const useComments = () => {
-  return useFetchArray(
-    `${API_URL}/comments`,
-    fetcher
-  );
+  return useFetchArray(`${API_URL}/comments`, fetcher);
 };
 export const usePosts = () => {
-  return useFetchArray(
-    `${API_URL}/posts`,
-    fetcher
-  );
+  return useFetchArray(`${API_URL}/posts`, fetcher);
 };
 export const useUsers = () => {
-  return useFetchArray(
-    `${API_URL}/users`,
-    fetcher
-  );
+  return useFetchArray(`${API_URL}/users`, fetcher);
 };
 
 export const useCommentsByPostsId = (id) => {
-  return useFetchArray(id ? `${API_URL}/comments?postId=${id}` : null)
-}
+  return useFetchArray(id ? `${API_URL}/comments?postId=${id}` : null);
+};
 
 export const usePostsByUserId = (id) => {
-  return useFetchArray(id ? `${API_URL}/posts?userId=${id}` : null)
-}
+  return useFetchArray(id ? `${API_URL}/posts?userId=${id}` : null);
+};

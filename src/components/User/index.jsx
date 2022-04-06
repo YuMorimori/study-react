@@ -1,5 +1,5 @@
 import { useUser } from "src/hooks/useUser";
-import { PostsByUserId } from "src/components/Posts/PostsByUserId"
+import { PostsByUserId } from "src/components/Posts/PostsByUserId";
 
 export const UserComponent = () => {
   const { data, error, isLoading } = useUser();
@@ -25,8 +25,7 @@ export const UserComponent = () => {
         <li>{data.company.name}</li>
       </ul>
       <h2>投稿</h2>
-        <PostsByUserId id={data.id} />
-      <h2>コメント</h2>
+      <PostsByUserId id={data.id} />
     </div>
   );
 };
