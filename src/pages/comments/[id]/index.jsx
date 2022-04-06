@@ -11,6 +11,7 @@ const CommentsId = () => {
     <div>
       <Header />
       <CommentComponent />
+      
     </div>
   );
 };
