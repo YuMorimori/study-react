@@ -2,21 +2,34 @@
 import Head from "next/head";
 import { Header } from "src/components/Header";
 import { Users as UsersComponent } from "src/components/Users";
+import { SWRConfig } from "swr";
 
-// メソッドをコンポーネント内部に書くと再レンダリングされるときに
-// 描画されてしまうのでパフォーマンスが落ちる
+export const getServerSideProps = async () => {
+  const USERS = `https://jsonplaceholder.typicode.com/users`;
+  const users = await fetch(USERS);
+  const usersData = await users.json();
 
-const Users = () => {
-  /* ファイルシステムルーティングを機能させるためにpages配下の
-    ディレクトリにはdefaultをつけておく決まりがある*/
+  return {
+    props: {
+      fallback: {
+        [USERS]: usersData,
+      },
+    },
+  };
+};
+
+const Users = (props) => {
+  const { fallback } = props;
 
   return (
     <div>
       <Head>
         <title>Posts Page</title>
       </Head>
-      <Header />
-      <UsersComponent />
+      <SWRConfig value={fallback}>
+        <Header />
+        <UsersComponent />
+      </SWRConfig>
     </div>
   );
 };
